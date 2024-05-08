@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CleanArchitureWithHilt"
+rootProject.name = "CleanArchitectureWithHilt"
 include(":app")
 include(":domain")
 include(":presentation")
