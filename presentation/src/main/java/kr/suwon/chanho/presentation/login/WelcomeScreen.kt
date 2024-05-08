@@ -3,11 +3,8 @@ package kr.suwon.chanho.presentation.login
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -20,7 +17,9 @@ import kr.suwon.chanho.presentation.component.SharedButton
 import kr.suwon.chanho.presentation.theme.ConnectedTheme
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    onNavigateToLoginScreen:() -> Unit
+) {
     Surface {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -42,11 +41,11 @@ fun WelcomeScreen() {
             SharedButton(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .padding(bottom = 24.dp)
                     .align(alignment = Alignment.BottomCenter),
                 text = "로그인",
-                onClick = {}
+                onClick = onNavigateToLoginScreen
             )
         }
     }
@@ -56,6 +55,6 @@ fun WelcomeScreen() {
 @Composable
 private fun WelcomeScreenPreview() {
     ConnectedTheme {
-        WelcomeScreen()
+        WelcomeScreen( onNavigateToLoginScreen = {} )
     }
 }
