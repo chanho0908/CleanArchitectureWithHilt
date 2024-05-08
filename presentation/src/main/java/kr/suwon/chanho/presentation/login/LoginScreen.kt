@@ -8,32 +8,41 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kr.suwon.chanho.presentation.component.SharedButton
 import kr.suwon.chanho.presentation.component.SharedTextField
 import kr.suwon.chanho.presentation.theme.ConnectedTheme
+import kr.suwon.chanho.presentation.login.vm.LoginViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
+    viewModel: LoginViewModel = hiltViewModel()
+){
+    LoginScreen(
+        id = "",
+        password = "",
+        onIdChange = {},
+        onPasswordChange = {},
+        onNavigateToSignUpScreen = viewModel::onLoginClick
+    )
+}
+
+@Composable
+private fun LoginScreen(
     id: String,
     password: String,
     onIdChange: (String) -> Unit,
-    onPasswordChange: (String) -> Unit
+    onPasswordChange: (String) -> Unit,
+    onNavigateToSignUpScreen: () -> Unit
 ) {
     Surface {
         Column(
@@ -102,7 +111,7 @@ fun LoginScreen(
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(bottom = 24.dp)
-                        .clickable(onClick = {})
+                        .clickable(onClick = onNavigateToSignUpScreen)
                 ) {
                     Text(text = "Don't have an account?")
                     Text(text = "Sign up", color = MaterialTheme.colorScheme.primary)
@@ -121,7 +130,8 @@ private fun LoginScreenPreview() {
             id = "sad",
             password = "sd",
             onIdChange = {},
-            onPasswordChange = {}
+            onPasswordChange = {},
+            onNavigateToSignUpScreen = {}
         )
     }
 }
