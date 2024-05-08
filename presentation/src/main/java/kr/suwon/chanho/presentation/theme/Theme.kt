@@ -1,4 +1,4 @@
-package kr.suwon.chanho.presentation.theme.theme
+package kr.suwon.chanho.presentation.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme

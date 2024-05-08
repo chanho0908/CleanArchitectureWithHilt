@@ -1,4 +1,4 @@
-package kr.suwon.chanho.presentation.theme.theme
+package kr.suwon.chanho.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
