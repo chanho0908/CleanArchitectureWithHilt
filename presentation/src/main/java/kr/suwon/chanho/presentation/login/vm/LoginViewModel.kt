@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kr.suwon.chanho.domain.usecase.login.LoginUseCase
+import kr.suwon.chanho.domain.usecase.login.SetTokenUseCase
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.syntax.simple.blockingIntent
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
+    private val setTokenUseCase: SetTokenUseCase
 ): ViewModel(), ContainerHost<LoginState, LoginSideEffect> {
 
     override val container: Container<LoginState, LoginSideEffect> = container(
@@ -34,16 +37,17 @@ class LoginViewModel @Inject constructor(
         val password = state.password
 
         val token = loginUseCase(id, password).getOrThrow()
-        postSideEffect(LoginSideEffect.Toast("token = $token"))
+        setTokenUseCase(token)
+        postSideEffect(LoginSideEffect.NavigateToMainActivity)
     }
 
-    fun onIdChange(id: String) = intent{
+    fun onIdChange(id: String) = blockingIntent{
         reduce {
             state.copy(id = id)
         }
     }
 
-    fun onPasswordChange(password: String) = intent{
+    fun onPasswordChange(password: String) = blockingIntent{
         reduce {
             state.copy(password = password)
         }
@@ -57,4 +61,5 @@ data class LoginState(
 
 sealed interface LoginSideEffect{
     class Toast(val msg: String): LoginSideEffect
+    object NavigateToMainActivity: LoginSideEffect
 }

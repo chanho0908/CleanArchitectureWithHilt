@@ -1,4 +1,4 @@
-package kr.suwon.chanho.presentation.login
+package kr.suwon.chanho.presentation.welcome
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

@@ -1,5 +1,6 @@
 package kr.suwon.chanho.presentation.login
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -16,22 +17,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import kr.suwon.chanho.presentation.component.SharedButton
 import kr.suwon.chanho.presentation.component.SharedTextField
-import kr.suwon.chanho.presentation.theme.ConnectedTheme
-import kr.suwon.chanho.presentation.login.vm.LoginViewModel
-import androidx.hilt.navigation.compose.hiltViewModel
 import kr.suwon.chanho.presentation.login.vm.LoginSideEffect
+import kr.suwon.chanho.presentation.login.vm.LoginViewModel
+import kr.suwon.chanho.presentation.main.MainActivity
+import kr.suwon.chanho.presentation.theme.ConnectedTheme
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
-    onNavigateToSignUpScreen: () -> Unit
+    onNavigateToSignUpScreen: () -> Unit,
 ){
     val state = viewModel.collectAsState().value
     val context = LocalContext.current
@@ -39,6 +40,13 @@ fun LoginScreen(
     viewModel.collectSideEffect{ sideEffect->
         when(sideEffect){
             is LoginSideEffect.Toast -> Toast.makeText(context, sideEffect.msg, Toast.LENGTH_SHORT).show()
+            LoginSideEffect.NavigateToMainActivity -> {
+                Intent(
+                    context, MainActivity::class.java)
+                    .apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+            }
         }
     }
     LoginScreen(
@@ -46,13 +54,13 @@ fun LoginScreen(
         password = state.password,
         onIdChange = viewModel::onIdChange,
         onPasswordChange = viewModel::onPasswordChange,
-        onNavigateToSignUpScreen = { },
+        onNavigateToSignUpScreen = onNavigateToSignUpScreen,
         onLoginClick = viewModel::onLoginClick
     )
 }
 
 @Composable
-private fun LoginScreen(
+fun LoginScreen(
     id: String,
     password: String,
     onIdChange: (String) -> Unit,
@@ -143,8 +151,8 @@ private fun LoginScreen(
 private fun LoginScreenPreview() {
     ConnectedTheme {
         LoginScreen(
-            id = "sad",
-            password = "sd",
+            id = "deseruisse",
+            password = "mi",
             onIdChange = {},
             onPasswordChange = {},
             onNavigateToSignUpScreen = {},
