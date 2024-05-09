@@ -64,6 +64,10 @@ dependencies {
 
     implementation(libs.navigation.compose)
     implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.orbit.core)
+    implementation(libs.orbit.compose)
+    implementation(libs.orbit.viewmodel)
     
     implementation(project(":domain"))
 }
