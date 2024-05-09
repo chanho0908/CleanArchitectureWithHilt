@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kr.suwon.chanho.presentation.signup.SignUpScreen
+import kr.suwon.chanho.presentation.welcome.WelcomeScreen
 
 @Composable
 fun LoginNavHost(){
@@ -22,7 +24,11 @@ fun LoginNavHost(){
         }
 
         composable(route = LoginRoute.LoginScreen.name){
-            LoginScreen()
+            LoginScreen(
+                onNavigateToSignUpScreen = {
+                    navController.navigate(route = LoginRoute.SignUpScreen.name)
+                }
+            )
         }
 
         composable(route = LoginRoute.SignUpScreen.name){
