@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.orbit.core)
     implementation(libs.orbit.compose)
     implementation(libs.orbit.viewmodel)
+
+    implementation(libs.coil.compose)
     
     implementation(project(":domain"))
 }

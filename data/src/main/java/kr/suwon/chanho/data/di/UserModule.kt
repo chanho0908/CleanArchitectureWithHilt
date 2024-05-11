@@ -4,16 +4,18 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.suwon.chanho.data.usecase.ClearTokenUseCaseImpl
-import kr.suwon.chanho.data.usecase.GetTokenUseCaseImpl
-import kr.suwon.chanho.data.usecase.LoginUseCaseImpl
-import kr.suwon.chanho.data.usecase.SetTokenUseCaseImpl
-import kr.suwon.chanho.data.usecase.SignUpUseCaseImpl
-import kr.suwon.chanho.domain.usecase.login.ClearTokenUseCase
-import kr.suwon.chanho.domain.usecase.login.GetTokenUseCase
+import kr.suwon.chanho.data.usecase.token.ClearTokenUseCaseImpl
+import kr.suwon.chanho.data.usecase.token.GetTokenUseCaseImpl
+import kr.suwon.chanho.data.usecase.login.LoginUseCaseImpl
+import kr.suwon.chanho.data.usecase.token.SetTokenUseCaseImpl
+import kr.suwon.chanho.data.usecase.login.SignUpUseCaseImpl
+import kr.suwon.chanho.data.usecase.main.setting.GetMyProfileUseCaseImpl
+import kr.suwon.chanho.domain.usecase.token.ClearTokenUseCase
+import kr.suwon.chanho.domain.usecase.token.GetTokenUseCase
 import kr.suwon.chanho.domain.usecase.login.LoginUseCase
-import kr.suwon.chanho.domain.usecase.login.SetTokenUseCase
+import kr.suwon.chanho.domain.usecase.token.SetTokenUseCase
 import kr.suwon.chanho.domain.usecase.login.SignUpUseCase
+import kr.suwon.chanho.domain.usecase.main.setting.GetMyProfileUseCase
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -32,4 +34,7 @@ abstract class UserModule {
 
     @Binds
     abstract fun setTokenUserCase(useCase: SetTokenUseCaseImpl): SetTokenUseCase
+
+    @Binds
+    abstract fun getMyProfileUseCase(useCse: GetMyProfileUseCaseImpl): GetMyProfileUseCase
 }

@@ -1,16 +1,15 @@
 package kr.suwon.chanho.data.di
 
-import android.util.Log
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
-import kr.suwon.chanho.data.service.UserService
+import kr.suwon.chanho.data.retrofit.HttpInterceptor
+import kr.suwon.chanho.data.retrofit.UserService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
 
@@ -20,14 +19,15 @@ class RetrofitModule {
     private val BASE_URL = "http://172.30.1.7:8080/api/"
 
     @Provides
-    fun provideOkHttpClient() = OkHttpClient.Builder()
-        .addInterceptor(HttpLoggingInterceptor { message ->
-            Log.e("MyOkHttpClient :", message + "")
-        }.setLevel(HttpLoggingInterceptor.Level.BODY))
-        .build()
+    fun provideOkHttpClient(interceptor: HttpInterceptor): OkHttpClient{
+        return OkHttpClient
+            .Builder()
+            .addInterceptor(interceptor)
+            .build()
+    }
 
     @Provides
-    fun provideRetrofit(): Retrofit{
+    fun provideRetrofit(client: OkHttpClient): Retrofit{
         val converterFactory = Json{
             ignoreUnknownKeys = true
         }.asConverterFactory("application/json; charset=UTF8".toMediaType())
@@ -35,7 +35,7 @@ class RetrofitModule {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(converterFactory)
-            .client(provideOkHttpClient())
+            .client(client)
             .build()
     }
 
