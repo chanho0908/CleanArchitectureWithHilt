@@ -9,11 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kr.suwon.chanho.domain.usecase.login.GetTokenUseCase
 import kr.suwon.chanho.presentation.login.LoginActivity
 import kr.suwon.chanho.presentation.main.MainActivity
 import kr.suwon.chanho.presentation.splash.vm.SplashViewModel
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SplashActivity: AppCompatActivity(){

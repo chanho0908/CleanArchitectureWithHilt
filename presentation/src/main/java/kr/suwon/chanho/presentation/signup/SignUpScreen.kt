@@ -30,16 +30,15 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 @Composable
 fun SignUpScreen(
     viewModel: SignUpViewModel = hiltViewModel(),
-    onNavigateToLoginScreen: () -> Unit
-){
+    onNavigateToLoginScreen:()->Unit
+) {
+
     val state = viewModel.collectAsState().value
     val context = LocalContext.current
-
     viewModel.collectSideEffect{ sideEffect ->
         when(sideEffect){
             is SignUpSideEffect.Toast -> Toast.makeText(context, sideEffect.msg, Toast.LENGTH_SHORT).show()
             SignUpSideEffect.NavigateToLoginScreen -> onNavigateToLoginScreen()
-
         }
     }
 
@@ -62,10 +61,12 @@ fun SignUpScreen(
     username: String,
     password1: String,
     password2: String,
+
     onIdChange: (String) -> Unit,
     onUsernameChange: (String) -> Unit,
     onPassword1Change: (String) -> Unit,
     onPassword2Change: (String) -> Unit,
+
     onSignUpClick: () -> Unit
 ) {
     Surface {
@@ -176,7 +177,6 @@ private fun SignUpScreenPreview() {
             onUsernameChange = {},
             onPassword1Change = {},
             onPassword2Change = {},
-            onSignUpClick = {}
-        )
+            onSignUpClick = {})
     }
 }

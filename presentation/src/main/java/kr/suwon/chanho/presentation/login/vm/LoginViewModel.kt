@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kr.suwon.chanho.domain.usecase.login.LoginUseCase
-import kr.suwon.chanho.domain.usecase.login.SetTokenUseCase
+import kr.suwon.chanho.domain.usecase.token.SetTokenUseCase
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.blockingIntent
