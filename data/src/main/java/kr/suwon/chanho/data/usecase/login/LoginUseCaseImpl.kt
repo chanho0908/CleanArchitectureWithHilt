@@ -1,8 +1,8 @@
-package kr.suwon.chanho.data.usecase
+package kr.suwon.chanho.data.usecase.login
 
 import kr.suwon.chanho.data.dto.request.LoginRequest
 import kr.suwon.chanho.data.dto.request.toRequestBody
-import kr.suwon.chanho.data.service.UserService
+import kr.suwon.chanho.data.retrofit.UserService
 import kr.suwon.chanho.domain.usecase.login.LoginUseCase
 import javax.inject.Inject
 
