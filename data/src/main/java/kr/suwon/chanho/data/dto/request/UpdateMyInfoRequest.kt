@@ -8,9 +8,9 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 @Serializable
 data class UpdateMyInfoRequest (
-    val userName:String,
-    val extraUserInfo:String,
-    val profileFilePath:String,
+    val userName: String,
+    val extraUserInfo: String,
+    val profileFilePath: String,
 )
 
 fun UpdateMyInfoRequest.toRequestBody(): RequestBody{

@@ -1,6 +1,7 @@
 package kr.suwon.chanho.presentation.main.setting
 
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
@@ -110,6 +111,7 @@ private fun SettingScreen(
                 modifier = Modifier.size(150.dp),
                 profileImageUrl = profileImageUrl,
             )
+            Log.d("sdasdas", profileImageUrl.toString())
 
             IconButton(
                 modifier = Modifier.align(Alignment.BottomEnd),

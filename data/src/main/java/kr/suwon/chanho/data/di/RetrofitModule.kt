@@ -6,12 +6,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import kr.suwon.chanho.data.retrofit.FileService
 import kr.suwon.chanho.data.retrofit.HttpInterceptor
 import kr.suwon.chanho.data.retrofit.UserService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -42,5 +42,10 @@ class RetrofitModule {
     @Provides
     fun provideUserService(retrofit: Retrofit): UserService {
         return retrofit.create(UserService::class.java)
+    }
+
+    @Provides
+    fun provideFileService(retrofit: Retrofit): FileService{
+        return retrofit.create(FileService::class.java)
     }
 }
