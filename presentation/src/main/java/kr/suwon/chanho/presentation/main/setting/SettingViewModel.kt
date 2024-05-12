@@ -1,10 +1,13 @@
 package kr.suwon.chanho.presentation.main.setting
 
+import android.net.Uri
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kr.suwon.chanho.domain.usecase.main.setting.GetMyProfileUseCase
+import kr.suwon.chanho.domain.usecase.main.setting.SetProfileImageUseCase
+import kr.suwon.chanho.domain.usecase.main.setting.UpdateMyNameUseCase
 import kr.suwon.chanho.domain.usecase.token.ClearTokenUseCase
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
@@ -17,8 +20,11 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingViewModel @Inject constructor(
     private val clearTokenUseCase: ClearTokenUseCase,
-    private val getMyProfileUseCase: GetMyProfileUseCase
+    private val getMyProfileUseCase: GetMyProfileUseCase,
+    private val updateMyNameUseCase: UpdateMyNameUseCase,
+    private val setProfileImageUseCase: SetProfileImageUseCase
 ): ViewModel(), ContainerHost<SettingState, SettingSideEffect> {
+
     override val container: Container<SettingState, SettingSideEffect> =
         container(
             initialState = SettingState(),
@@ -46,6 +52,16 @@ class SettingViewModel @Inject constructor(
 
     fun onLogoutClick() = intent{
         clearTokenUseCase().getOrThrow()
+        postSideEffect(SettingSideEffect.NavigateToLoginActivity)
+    }
+
+    fun onUsernameChange(name: String) = intent{
+        updateMyNameUseCase(name).getOrThrow()
+        load()
+    }
+
+    fun onImageChange(uri: Uri?) {
+
     }
 }
 
