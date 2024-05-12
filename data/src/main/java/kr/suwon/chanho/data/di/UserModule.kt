@@ -27,14 +27,18 @@ abstract class UserModule {
     abstract fun bindSignUpUseCase(useCase: SignUpUseCaseImpl): SignUpUseCase
 
     @Binds
-    abstract fun getTokenUserCase(useCase: GetTokenUseCaseImpl): GetTokenUseCase
+    abstract fun bindGetTokenUserCase(useCase: GetTokenUseCaseImpl): GetTokenUseCase
 
     @Binds
-    abstract fun clearTokenUserCase(useCase: ClearTokenUseCaseImpl): ClearTokenUseCase
+    abstract fun bindClearTokenUserCase(useCase: ClearTokenUseCaseImpl): ClearTokenUseCase
 
     @Binds
-    abstract fun setTokenUserCase(useCase: SetTokenUseCaseImpl): SetTokenUseCase
+    abstract fun bindSetTokenUserCase(useCase: SetTokenUseCaseImpl): SetTokenUseCase
 
     @Binds
     abstract fun getMyProfileUseCase(useCse: GetMyProfileUseCaseImpl): GetMyProfileUseCase
+
+    @Binds
+    abstract fun bindUpdateMyNameUseCase(useCase: UpdateMyNameUseCaseImpl): UpdateMyNameUseCase
+
 }
