@@ -1,4 +1,4 @@
-package kr.suwon.chanho.presentation.login
+package kr.suwon.chanho.presentation.login.screen
 
 import android.content.Intent
 import android.widget.Toast

@@ -1,4 +1,4 @@
-package kr.suwon.chanho.presentation.login
+package kr.suwon.chanho.presentation.login.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.background

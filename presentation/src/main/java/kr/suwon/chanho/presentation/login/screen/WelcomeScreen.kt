@@ -1,4 +1,4 @@
-package kr.suwon.chanho.presentation.login
+package kr.suwon.chanho.presentation.login.screen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
