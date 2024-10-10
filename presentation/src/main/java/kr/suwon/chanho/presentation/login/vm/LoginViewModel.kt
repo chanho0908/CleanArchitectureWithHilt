@@ -41,7 +41,8 @@ class LoginViewModel @Inject constructor(
         val password = state.password
         val token = loginUseCase(id, password).getOrThrow()
         setTokenUseCase(token)
-        postSideEffect(LoginSideEffect.Toast("token : $token"))
+        //postSideEffect(LoginSideEffect.Toast("token : $token"))
+        postSideEffect(LoginSideEffect.NavigateToMain)
     }
 
     fun onIdChange(id: String) = blockingIntent{
